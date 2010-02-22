@@ -39,7 +39,8 @@ module ActsAsMysqlFulltext
 				end.join(' ').strip
 			end
 			def create_or_update_fulltext_index
-				build_fulltext_index(:tokens => fulltext_index_tokens)
+				fulltext_index && fulltext_index.update_attribute(:tokens, fulltext_index_tokens) || 
+				                  build_fulltext_index(:tokens => fulltext_index_tokens)
 			end
 		end
 	end

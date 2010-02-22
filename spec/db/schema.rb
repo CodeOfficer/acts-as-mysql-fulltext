@@ -11,7 +11,7 @@ ActiveRecord::Schema.define(:version => 1) do
   ) ENGINE=MyISAM;"
 	create_table :something_with_fulltexts, :force => true do |t|
 		t.column :something, :string
-		t.column :semething_else, :string
+		t.column :something_else, :string
 	end
 	create_table :something_without_fulltexts, :force => true do |t|
 		
