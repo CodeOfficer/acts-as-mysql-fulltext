@@ -16,13 +16,13 @@ end
 		end
 		[[ActsAsMysqlFulltext::Indexable, SomethingWithFulltext], [ActsAsMysqlFulltext::Index, FulltextIndex]].each do |(matching_module, matching_klass)|
 			(klass == matching_klass).tap do |should_include|
-				it "should #{'not' if !should_include} include #{matching_module}" do
+				it "should #{'not' unless should_include} include #{matching_module}" do
 					klass.include?(matching_module).should eql(should_include)
 				end
-				it "should #{'not' if !should_include} extend #{matching_module}::ClassMethods" do
+				it "should #{'not' unless should_include} extend #{matching_module}::ClassMethods" do
 					klass.is_a?(matching_module::ClassMethods).should eql(should_include)
 				end
-				it "should #{'not' if !should_include} include #{matching_module}::InstanceMethods" do
+				it "should #{'not' unless should_include} include #{matching_module}::InstanceMethods" do
 					klass.include?(matching_module::InstanceMethods).should eql(should_include)
 				end
 			end
