@@ -9,10 +9,11 @@ ActiveRecord::Schema.define(:version => 1) do
   KEY `indexable_type` (`indexable_type`,`indexable_id`),
   FULLTEXT KEY `tokens` (`tokens`)
   ) ENGINE=MyISAM;"
-	create_table :something_with_fulltext, :force => true do |t|
-		
+	create_table :something_with_fulltexts, :force => true do |t|
+		t.column :something, :string
+		t.column :semething_else, :string
 	end
-	create_table :something_without_fulltext, :force => true do |t|
+	create_table :something_without_fulltexts, :force => true do |t|
 		
 	end
 end

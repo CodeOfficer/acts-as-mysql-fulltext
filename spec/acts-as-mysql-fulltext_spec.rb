@@ -25,3 +25,17 @@ end
 		end
 	end
 end
+
+describe SomethingWithFulltext do
+	
+	it 'should have proper tokens' do
+		a = SomethingWithFulltext.new(:something => 'a')
+		a.fulltext_index_tokens.should eql('a')
+	end
+	
+	it 'should create the fulltext index' do
+		a = SomethingWithFulltext.create!(:something => 'a')
+		a.fulltext_index.attributes.should == {"tokens"=>"a", "indexable_type"=>"SomethingWithFulltext", "indexable_id"=>1, "id"=>1}
+	end
+	
+end

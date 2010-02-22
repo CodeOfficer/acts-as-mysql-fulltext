@@ -5,7 +5,7 @@ class SomethingWithFulltext < ActiveRecord::Base
 end
 
 class SomethingWithoutFulltext < ActiveRecord::Base
-	
-	
-	
+
+
+
 end

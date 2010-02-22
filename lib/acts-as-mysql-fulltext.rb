@@ -33,19 +33,13 @@ module ActsAsMysqlFulltext
 		end
 		
 		module InstanceMethods
-			def build_fulltext_index
-				self.class.fulltext_index_columns.inject([]) do |result, column|
-					result.push read_attribute(column)
-				end.join(' ')
-			end
-			def update_fulltext_index
-				fulltext_index.update_attribute(:tokens, build_fulltext_index)
-			end
-			def create_fulltext_index
-				fulltext_index.create(:tokens => build_fulltext_index)
+			def fulltext_index_tokens
+				self.class.fulltext_index_columns.map do |column|
+					read_attribute(column)
+				end.join(' ').strip
 			end
 			def create_or_update_fulltext_index
-				fulltext_index && update_fulltext_index || create_fulltext_index
+				build_fulltext_index(:tokens => fulltext_index_tokens)
 			end
 		end
 	end
