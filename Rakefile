@@ -5,11 +5,11 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "acts-as-mysql-fulltext"
-    gem.summary = %Q{TODO: one-line summary of your gem}
+    gem.summary = %Q{fulltext searching in mysql for rails}
     gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "spam@codeofficer.com"
+    gem.email = ["spam@codeofficer.com", "james@greenvan.com"]
     gem.homepage = "http://github.com/CodeOfficer/acts-as-mysql-fulltext"
-    gem.authors = ["Russell Jones"]
+    gem.authors = ["Russell Jones", "James Daniels"]
     gem.add_development_dependency "rspec"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
