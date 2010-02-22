@@ -14,23 +14,18 @@ end
 		it 'should respond to acts_as_mysql_fulltext' do
 			klass.respond_to?(:acts_as_mysql_fulltext).should be_true
 		end
-		it "should#{(klass != SomethingWithFulltext) && ' not' || ''} include ActsAsMysqlFulltext::Indexable" do
-			klass.include?(ActsAsMysqlFulltext::Indexable).should eql(klass == SomethingWithFulltext)
-		end
-		it "should#{(klass != SomethingWithFulltext) && ' not' || ''} extend ActsAsMysqlFulltext::Indexable::ClassMethods" do
-			klass.is_a?(ActsAsMysqlFulltext::Indexable::ClassMethods).should eql(klass == SomethingWithFulltext)
-		end
-		it "should#{(klass != SomethingWithFulltext) && ' not' || ''} include ActsAsMysqlFulltext::Indexable::InstanceMethods" do
-			klass.include?(ActsAsMysqlFulltext::Indexable::InstanceMethods).should eql(klass == SomethingWithFulltext)
-		end
-		it "should#{(klass != FulltextIndex) && ' not' || ''} include ActsAsMysqlFulltext::Index" do
-			klass.include?(ActsAsMysqlFulltext::Index).should eql(klass == FulltextIndex)
-		end
-		it "should#{(klass != FulltextIndex) && ' not' || ''} extend ActsAsMysqlFulltext::Index::ClassMethods" do
-			klass.is_a?(ActsAsMysqlFulltext::Index::ClassMethods).should eql(klass == FulltextIndex)
-		end
-		it "should#{(klass != FulltextIndex) && ' not' || ''} include ActsAsMysqlFulltext::Index::InstanceMethods" do
-			klass.include?(ActsAsMysqlFulltext::Index::InstanceMethods).should eql(klass == FulltextIndex)
+		[[ActsAsMysqlFulltext::Indexable, SomethingWithFulltext], [ActsAsMysqlFulltext::Index, FulltextIndex]].each do |(matching_module, matching_klass)|
+			(klass == matching_klass).tap do |should_include|
+				it "should #{'not' if !should_include} include #{matching_module}" do
+					klass.include?(matching_module).should eql(should_include)
+				end
+				it "should #{'not' if !should_include} extend #{matching_module}::ClassMethods" do
+					klass.is_a?(matching_module::ClassMethods).should eql(should_include)
+				end
+				it "should #{'not' if !should_include} include #{matching_module}::InstanceMethods" do
+					klass.include?(matching_module::InstanceMethods).should eql(should_include)
+				end
+			end
 		end
 	end
 end
