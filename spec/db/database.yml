@@ -1,0 +1,5 @@
+active_record_merge_test:
+  adapter: mysql
+  database: acts_as_mysql_fulltext_test
+  user: root
+  host: 127.0.0.1
