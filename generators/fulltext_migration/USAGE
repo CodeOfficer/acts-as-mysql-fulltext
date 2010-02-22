@@ -1,0 +1,7 @@
+Description:
+	The fulltext migration generator creates a migration to add the fulltext_indices table.
+
+Example:
+    ./script/generate fulltext_migration
+
+    This will create a migration in db/migrate/.  Run "rake db:migrate" to update your database.
