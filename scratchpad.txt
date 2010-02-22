@@ -1,0 +1,6 @@
+SELECT `jobs`.`id` AS t0_r0, `jobs`.`owner_id` AS t0_r1, `jobs`.`owner_type` AS t0_r2, `jobs`.`title` AS t0_r3, `jobs`.`description` AS t0_r4, `jobs`.`status` AS t0_r5, `jobs`.`impression_count` AS t0_r6, `jobs`.`city` AS t0_r7, `jobs`.`state` AS t0_r8, `jobs`.`provider` AS t0_r9, `jobs`.`lat` AS t0_r10, `jobs`.`lng` AS t0_r11, `jobs`.`created_at` AS t0_r12, `jobs`.`updated_at` AS t0_r13, `jobs`.`expires_on` AS t0_r14, `jobs`.`contact_owner` AS t0_r15, `jobs`.`display_map` AS t0_r16, `jobs`.`street` AS t0_r17, `jobs`.`rich_text` AS t0_r18, `jobs`.`rich_description` AS t0_r19, `fulltext_indices`.`id` AS t1_r0, `fulltext_indices`.`indexable_type` AS t1_r1, `fulltext_indices`.`indexable_id` AS t1_r2, `fulltext_indices`.`tokens` AS t1_r3
+FROM `jobs`
+LEFT OUTER JOIN `fulltext_indices` ON `fulltext_indices`.indexable_id = `jobs`.id
+AND `fulltext_indices`.indexable_type = 'Job'
+WHERE (fulltext_indices.indexable_type = "Job" AND MATCH(fulltext_indices.tokens) AGAINST ("+and*" IN BOOLEAN MODE))
+ORDER BY jobs.created_at DESC
