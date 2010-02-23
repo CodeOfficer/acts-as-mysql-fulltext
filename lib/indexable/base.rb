@@ -6,7 +6,7 @@ module ActsAsMysqlFulltext
 			base.class_eval do
 				include InstanceMethods
 				extend  ClassMethods
-				after_save :create_or_update_fulltext_index
+				after_save :create_or_update_the_fulltext_index
 				has_one :fulltext_index, :as => :indexable, :dependent => :destroy
 			end
 		end
